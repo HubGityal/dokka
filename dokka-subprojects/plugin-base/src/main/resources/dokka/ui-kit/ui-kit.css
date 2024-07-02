@@ -78,22 +78,22 @@
 }
 
 .navigation {
+  z-index: 4;
   display: flex;
   justify-content: space-between;
   height: var(--size-l1);
+  margin-right: 0;
+  margin-left: 0;
+  padding: 10px var(--horizontal-spacing-for-content);
   color: var(--color-text-white);
   background-color: var(--color-nav-bar);
-  margin-left: 0;
-  margin-right: 0;
-  padding: 10px var(--horizontal-spacing-for-content);
-  z-index: 4;
 }
 
 .navigation--inner {
   display: flex;
+  flex: 1 1 auto;
   flex-wrap: wrap;
   justify-content: space-between;
-  flex: 1 1 auto;
 }
 
 .navigation--inner, .navigation-title {
@@ -110,29 +110,30 @@
 }
 
 .menu-toggle {
-  color: var(--background-color);
-  line-height: 0;
-  font-size: 0;
-  text-indent: -9999px;
-  background: rgba(0, 0, 0, 0);
-  border: none;
-  padding: 0;
-  margin-right: 16px;
-  outline: none;
-  transition: margin 0.2s ease-out;
   z-index: 5;
+  margin-right: 16px;
+  padding: 0;
+  transition: margin 0.2s ease-out;
+  text-indent: -9999px;
+  color: var(--background-color);
+  border: none;
+  outline: none;
+  background: rgba(0, 0, 0, 0);
+  font-size: 0;
+  line-height: 0;
 }
 
-@media (min-width: 760px) {
+@media (width >= 760px) {
   .menu-toggle {
     display: none;
   }
 }
 .menu-toggle::before {
   display: block;
-  content: "";
-  height: 28px;
   width: 28px;
+  height: 28px;
+  content: "";
+  background: url(assets/burger.svg) no-repeat center;
 }
 
 .library-version {
@@ -153,9 +154,9 @@
   display: none;
 }
 
-@media (min-width: 760px) {
+@media (width >= 760px) {
   .filter-section {
-    padding: 5px 0 5px;
+    padding: 5px 0;
   }
 }
 .navigation-controls {
@@ -163,7 +164,7 @@
   margin-left: 4px;
 }
 
-@media (min-width: 760px) {
+@media (width >= 760px) {
   .navigation-controls {
     align-items: center;
   }
@@ -178,15 +179,15 @@
   justify-content: center;
   width: 40px;
   height: 40px;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out;
+  border: none;
   border-radius: 50%;
   background-color: inherit;
   background-position: 50% 50%;
-  padding: 0;
-  border: none;
-  cursor: pointer;
   font-size: 0;
   line-height: 0;
-  transition: background-color 200ms ease-in-out;
   will-change: background-color;
 }
 
@@ -195,20 +196,22 @@
 }
 
 .navigation-controls--theme {
+  background-image: url(assets/theme-toggle.svg);
   background-repeat: no-repeat;
 }
 
-@media (max-width: 759px) {
+@media (width <= 759px) {
   .navigation-controls--theme {
     display: none;
   }
 }
 .navigation-controls--homepage {
+  background-image: url(assets/homepage.svg);
   background-repeat: no-repeat;
   background-size: 24px 24px;
 }
 
-@media (max-width: 759px) {
+@media (width <= 759px) {
   .navigation-controls--homepage {
     display: none;
   }
@@ -296,20 +299,20 @@
 }
 
 .tabs-section, .platform-hinted > .platform-bookmarks-row {
-  margin-left: -8px;
   margin-right: -8px;
+  margin-left: -8px;
 }
 
 .section-tab, .platform-hinted > .platform-bookmarks-row > .platform-bookmark {
-  border: 0;
-  padding: 11px 3px;
   margin: 0 8px;
+  padding: 11px 3px;
   cursor: pointer;
-  outline: none;
-  font-size: var(--default-font-size);
-  background-color: rgba(0, 0, 0, 0);
   color: var(--inactive-section-color);
+  border: 0;
   border-bottom: 1px solid var(--inactive-tab-border-color);
+  outline: none;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: var(--default-font-size);
 }
 
 .platform-hinted > .platform-bookmarks-row {
@@ -344,16 +347,16 @@
 }
 
 .platform-hinted {
-  flex: auto;
   display: block;
+  flex: auto;
 }
 
 .platform-hinted > .platform-bookmarks-row > .platform-bookmark {
-  min-width: var(--size-l1);
-  background: inherit;
+  align-self: flex-start;
   flex: none;
   order: 5;
-  align-self: flex-start;
+  min-width: var(--size-l1);
+  background: inherit;
 }
 
 .platform-hinted > .platform-bookmarks-row > .platform-bookmark:hover {
@@ -362,8 +365,8 @@
 }
 
 .platform-hinted > .platform-bookmarks-row > .platform-bookmark[data-active=""] {
-  border-bottom: 2px solid var(--active-tab-border-color);
   color: var(--active-section-color);
+  border-bottom: 2px solid var(--active-tab-border-color);
 }
 
 .no-js .platform-bookmarks-row, .no-js .tabs-section {
@@ -371,10 +374,6 @@
 }
 
 .js .platform-hinted > .content:not([data-active]), .js .tabs-section-body *[data-togglable]:not([data-active]) {
-  display: none;
-}
-
-.main-content[data-page-type=package] .tabs-section-body h2 {
   display: none;
 }
 
